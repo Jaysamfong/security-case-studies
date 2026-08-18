@@ -66,7 +66,7 @@ framework, and ongoing application security work on the platform documented here
 CompTIA Security+, CySA+, CSAP.
 
 Jayson Sam Fong · Orlando, FL
-[LinkedIn](#) · jaysamfong@gmail.com
+[LinkedIn](https://www.linkedin.com/in/jayson-sam-fong) · jaysamfong@gmail.com
 
 ---
 
