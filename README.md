@@ -12,8 +12,8 @@ references, user IDs, customer IDs, hostnames, tokens) are redacted throughout.
 
 | # | Case Study | Vulnerability Class | Stack | Outcome |
 |---|---|---|---|---|
-| 01 | [Column-Level Privilege Escalation](./case-studies/01-column-level-privilege-escalation.md) | Broken Object Property-Level Authorization (OWASP API3) | Supabase / Postgres / RLS | Free tier-upgrade path closed with a role-scoped trigger; verified both directions |
-| 02 | [An MFA Gate That Never Ran](./case-studies/02-mfa-gate-fail-open.md) | Identification & Authentication Failures (OWASP Web A07) | Deno / Edge Functions / JWT | Two independent fail-open defects closed; MFA enforcement restored and proven in both directions |
+| 01 | [Column-Level Privilege Escalation](./case-studies/01-column-level-privilege-escalation.md) | Broken Object Property-Level Authorization (OWASP API3:2023) | Supabase / Postgres / RLS | Free tier-upgrade path closed with a role-scoped trigger; verified both directions |
+| 02 | [An MFA Gate That Never Ran](./case-studies/02-mfa-gate-fail-open.md) | Identification & Authentication Failures (OWASP Web A07:2021) | Deno / Edge Functions / JWT | Two independent fail-open defects closed; MFA enforcement restored and proven in both directions |
 
 *Further case studies in progress. An OWASP LLM Top 10 coverage assessment of the
 platform's AI integration paths will be published once its open items are
