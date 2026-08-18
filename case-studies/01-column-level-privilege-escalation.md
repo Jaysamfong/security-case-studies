@@ -162,9 +162,23 @@ Both guarantees held: end users are blocked from self-granting; the server-side 
 
 ## 8. Adjacent findings (noted for follow-up)
 
-- **Client-supplied `priceId`.** The checkout function received the Stripe price ID from the browser (`{"priceId": "..."}`). Trusting client-supplied identifiers invites price tampering; the server should map plan → price or validate against an allowlist.
-- **Stripe test/live isolation.** A stale test-mode `stripe_customer_id` persisted on a downgraded account caused a "No such customer … live mode key" error at checkout — a reminder that test and live objects are fully separate universes and account resets must clear billing linkage.
-- **Key hygiene.** The `service_role` key is the one credential this trigger *cannot* defend against — it is trusted by design. It must remain server-side only (edge-function env vars), never in the frontend or version control, and be rotated immediately if exposed.
+- **Client-supplied `priceId` — subsequently closed.** The checkout function received
+  the Stripe price identifier from the browser. Trusting a client-supplied identifier
+  invites price tampering, so the server now validates every incoming identifier
+  against a server-side allowlist before it reaches the payment provider. A later
+  finding demonstrated the value of that control from an unexpected direction: a
+  single-character typo in the allowlist was caught at the validation boundary rather
+  than silently producing a mismatched entitlement.
+
+- **Test and live billing objects are fully separate universes.** A stale test-mode
+  customer identifier persisting on a downgraded account produced a "no such customer"
+  error against a live-mode key at checkout. No exploit path, but it means billing
+  state is not automatically reliable as a source of truth, and account resets must
+  clear billing linkage explicitly. Tracked separately.
+
+- **Key hygiene.** The `service_role` key is the one credential this trigger cannot
+  defend against — it is trusted by design. It must remain server-side only, never in
+  the frontend or version control, and be rotated immediately if exposed.
 
 ---
 
